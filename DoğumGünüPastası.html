@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kenan’a Doğum Günü Pastası</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #ffe4f1, #ffc2d1);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cake {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .layer {
+      height: 50px;
+      border-radius: 10px;
+      background: pink;
+      margin-bottom: 6px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .layer1 { width: 200px; background: #ff6b81; }
+    .layer2 { width: 160px; background: #ff85a1; }
+    .layer3 { width: 120px; background: #ffaec9; }
+    .layer4 { width: 80px; background: #ffc4dd; }
+
+    .candle {
+      width: 6px;
+      height: 30px;
+      background: #ffd700;
+      position: absolute;
+      top: -35px;
+      border-radius: 2px;
+      animation: glow 1s infinite alternate;
+    }
+
+    .flame {
+      width: 10px;
+      height: 10px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -12px;
+      left: -2px;
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px 2px #ffa500; }
+      100% { box-shadow: 0 0 10px 4px #ffd700; }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 22px;
+      color: white;
+      text-shadow: 1px 1px 4px #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="cake">
+    <div class="layer layer4" id="topLayer"></div>
+    <div class="layer layer3"></div>
+    <div class="layer layer2"></div>
+    <div class="layer layer1"></div>
+    <div class="message">Mutlu Yıllar! 🎉</div>
+  </div>
+
+  <script>
+    // Üst kata 3 mum ekle
+    const topLayer = document.getElementById("topLayer");
+    const candlePositions = [-20, 0, 20];
+
+    candlePositions.forEach(pos => {
+      const candle = document.createElement("div");
+      candle.className = "candle";
+      candle.style.left = `calc(50% + ${pos}px - 3px)`;
+
+      const flame = document.createElement("div");
+      flame.className = "flame";
+
+      candle.appendChild(flame);
+      topLayer.appendChild(candle);
+    });
+  </script>
+</body>
+</html>
