@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Güneş ve Ay</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        .sky {
+            height: 100vh;
+            background: linear-gradient(to top, #0f2027, #2c5364);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite;
+           
+        }   
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        .login-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .login-panel input {
+            display: block;
+            margin: 10px auto;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            width: 80%;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .login-panel input::placeholder {
+            color: #ddd;
+        }
+
+        .login-panel button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            background-color: #1a75ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #login-message {
+            margin-top: 14px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sky"></div>
+
+    <div class="login-panel">
+        <h2>Giriş Yap</h2>
+        <input type="text" id="username" placeholder="Kullanıcı Adı">
+        <input type="password" id="password" placeholder="Şifre">
+        <button onclick="login()">Giriş</button>
+        <p id="login-message"></p>
+    </div>
+
+    <script>
+        // Yıldızları oluştur
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement("div");
+            star.classList.add("star");
+            star.style.top = Math.random() * window.innerHeight + "px";
+            star.style.left = Math.random() * window.innerWidth + "px";
+            document.querySelector(".sky").appendChild(star);
+        }
+
+        // Giriş kontrolü
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("login-message");
+
+            if (username === "admin" && password === "1234") {
+                message.textContent = "Giriş başarılı!";
+                message.style.color = "lightgreen";
+            } else {
+                message.textContent = "Kullanıcı adı veya şifre yanlış!";
+                message.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
